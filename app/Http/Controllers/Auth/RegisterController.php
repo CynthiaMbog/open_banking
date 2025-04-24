@@ -24,11 +24,14 @@ class RegisterController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+
         $user = User::create([
             'name' => $request->last_name . ' ' . $request->first_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        
 
         Auth::login($user);
 

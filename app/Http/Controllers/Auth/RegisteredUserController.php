@@ -23,6 +23,7 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
+
         $user = User::create([
             'last_name' => $request->nom,
             'first_name' => $request->prenom,
@@ -32,7 +33,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        auth()->login($user);
+        
 
         return redirect()->route('inscription.success');
     }
