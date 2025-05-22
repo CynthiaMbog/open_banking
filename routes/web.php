@@ -3,11 +3,44 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\AccueilController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/accueil', function () {
+    return view('accueil'); // ou le nom exact de ton Blade
+})->name('accueil');
+
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
+
+Route::get('/', function () {
+    return view('index');
+})->middleware('auth')->name('index');
+
+
+
+Route::get('/payment', function () {
+    return view('auth.payment');
+})->name('payment');
+
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
+
+
+Route::get('/services', function () {
+    return view('services');
+})->name('services');
 
 // Route pour afficher le formulaire de connexion
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
